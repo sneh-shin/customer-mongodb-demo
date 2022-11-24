@@ -5,5 +5,5 @@
  */
 package com.niit.jap.service;
 
-public class CustomerServiceImpl {
+public class CustomerServiceImpl implements CustomerService{
 }
