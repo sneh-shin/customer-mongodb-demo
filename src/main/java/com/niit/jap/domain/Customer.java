@@ -15,4 +15,14 @@ public class Customer {
     private String customerName;
     private long customerPhone;
     private Product customerProduct;
+
+    public Customer() {
+    }
+
+    public Customer(int customerId, String customerName, long customerPhone, Product customerProduct) {
+        this.customerId = customerId;
+        this.customerName = customerName;
+        this.customerPhone = customerPhone;
+        this.customerProduct = customerProduct;
+    }
 }
