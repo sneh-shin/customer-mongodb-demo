@@ -18,11 +18,52 @@ public class Customer {
 
     public Customer() {
     }
-
     public Customer(int customerId, String customerName, long customerPhone, Product customerProduct) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerPhone = customerPhone;
         this.customerProduct = customerProduct;
+    }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public long getCustomerPhone() {
+        return customerPhone;
+    }
+
+    public void setCustomerPhone(long customerPhone) {
+        this.customerPhone = customerPhone;
+    }
+
+    public Product getCustomerProduct() {
+        return customerProduct;
+    }
+
+    public void setCustomerProduct(Product customerProduct) {
+        this.customerProduct = customerProduct;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerId=" + customerId +
+                ", customerName='" + customerName + '\'' +
+                ", customerPhone=" + customerPhone +
+                ", customerProduct=" + customerProduct +
+                '}';
     }
 }
