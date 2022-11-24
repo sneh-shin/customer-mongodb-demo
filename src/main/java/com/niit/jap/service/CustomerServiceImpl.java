@@ -23,21 +23,21 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public Customer saveCustomer(Customer customer) {
-        return null;
+        return repository.save(customer);
     }
 
     @Override
     public boolean deleteCustomer(int customerId) {
-        return false;
+        repository.deleteById(customerId);
+        return true;
     }
-
     @Override
     public List<Customer> getAllCustomers() {
-        return null;
+        return repository.findAll();
     }
 
     @Override
     public List<Customer> getByProductName(String productName) {
-        return null;
+        return repository.fetchItem(productName);
     }
 }
