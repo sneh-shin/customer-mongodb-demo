@@ -6,6 +6,9 @@
 package com.niit.jap.service;
 
 import com.niit.jap.domain.Customer;
+import com.niit.jap.exception.CustomerAlreadyExists;
+import com.niit.jap.exception.CustomerIdNotFound;
+import com.niit.jap.exception.ProductNotFound;
 import com.niit.jap.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,14 +25,23 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
-    public Customer saveCustomer(Customer customer) {
-        return repository.save(customer);
-    }
+    public Customer saveCustomer(Customer customer) throws CustomerAlreadyExists {
+        if (repository.findById(customer.getCustomerId()).isPresent()) {
+            throw new CustomerAlreadyExists();
+        }
+            return repository.save(customer);
+        }
 
     @Override
-    public boolean deleteCustomer(int customerId) {
-        repository.deleteById(customerId);
-        return true;
+    public boolean deleteCustomer(int customerId) throws CustomerIdNotFound {
+        boolean result = false;
+        if(repository.findById(customerId).isEmpty()) {
+            throw new CustomerIdNotFound();
+        }else {
+            repository.deleteById(customerId);
+            result = true;
+        }
+        return result;
     }
     @Override
     public List<Customer> getAllCustomers() {
@@ -37,7 +49,10 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
-    public List<Customer> getByProductName(String productName) {
-        return repository.fetchItem(productName);
+    public List<Customer> findAllCustomerFromProductName(String productName) throws ProductNotFound {
+       if(repository.findAllCustomerFromProductName(productName).isEmpty()){
+           throw new ProductNotFound();
+       }
+       return repository.findAllCustomerFromProductName(productName);
     }
 }
